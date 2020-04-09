@@ -17,14 +17,17 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    "key-spacing": [2, { "align": "colon" }],
-    "semi": [2, "never"],
-    "react/no-unescaped-entities": 0,
-    "react/prop-types": 0,
-    "space-before-function-paren": ["error", {
-      "anonymous": "always",
-      "named": "always",
-      "asyncArrow": "always"
+    "no-trailing-spaces": "error",
+    "comma-dangle": ["error", "never"],
+    'max-len': ['error', { 'code': 80 }],
+    'key-spacing': [2, { 'align': 'colon' }],
+    'semi': [2, 'never'],
+    'react/no-unescaped-entities': 0,
+    'react/prop-types': 0,
+    'space-before-function-paren': ['error', {
+      'anonymous': 'always',
+      'named': 'always',
+      'asyncArrow': 'always'
     }]
   }
 }

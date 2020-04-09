@@ -4,8 +4,8 @@ const cleaner = response => {
   result.departments = response.map(department => {
     if(department.attributes.MUERTES) deaths.push(department.attributes.MUERTES)
     return {
-      name: department.attributes.REGION,
-      cases: department.attributes.CONFIRMADOS,
+      name  : department.attributes.REGION,
+      cases : department.attributes.CONFIRMADOS,
       deaths: department.attributes.MUERTES || 0
     }
   })
@@ -16,7 +16,7 @@ const cleaner = response => {
   deaths.length > 1
   ? result.totalDeaths = deaths.reduce((total, value) => total + value)
   : result.totalDeaths = deaths[0]
-  
+
   return result
 }
 

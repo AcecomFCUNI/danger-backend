@@ -111,3 +111,9 @@
 
 - Updated:
   - Implemented endpoint `/api/covid/peru/currentDate`. It returns the last date in the database.
+
+## Version 2.3.0
+
+- Updated:
+  - New endpoint that provides the total data per department by day, and the Peru total data per day.
+  

@@ -36,6 +36,71 @@ router.get('/currentDate', async (req, res) => {
   }
 })
 
+router.get('/totalData/:name', async (req, res) => {
+  let wanted = req.params.name
+  let data
+  try {
+    if (wanted === 'peru'){
+      data = await TotalData.find(
+        {},
+        {
+          _id           : false,
+          createdAt     : true,
+          totalCases    : true,
+          totalDiscarded: true,
+          totalRecovered: true,
+          totalDeaths   : true
+        }
+      )
+      data = data.map(element => {
+        const date = dateUTCGenerator(element.createdAt)
+        return {
+          createdAt     : `${date.year}-${date.month}-${date.day}`,
+          totalCases    : element.totalCases,
+          totalDiscarded: element.totalDiscarded,
+          totalRecovered: element.totalRecovered,
+          totalDeaths   : element.totalDeaths
+        }
+      })
+    }
+    else {
+      wanted = wanted.toUpperCase()
+      // Query to get all the data per departments by day
+      data = await Departments.find(
+        { 'departments.name': wanted },
+        {
+          _id        : false,
+          createdAt  : true,
+          departments: { $elemMatch: { name: wanted } }
+        }
+      )
+      // Formatting the data
+      data = data.map(element => {
+        const date = dateUTCGenerator(element.createdAt)
+        return {
+          createdAt: `${date.year}-${date.month}-${date.day}`,
+          data     : {
+            cases : element.departments[0].cases,
+            deaths: element.departments[0].deaths
+          }
+        }
+      })
+    }
+    res.send({
+      success: true,
+      error  : false,
+      message: { name: wanted, data: data }
+    })
+  } catch (error) {
+    console.log(error)
+    res.send({
+      success: false,
+      error  : true,
+      message: 'Error while getting the data from the database'
+    })
+  }
+})
+
 router.get('/:date', async (req, res) => {
   const date = new Date(`${req.params.date}T00:00:00.000Z`)
 

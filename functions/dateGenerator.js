@@ -5,7 +5,7 @@ const dateGenerator = date => {
 }
 
 const dateUTCGenerator = date => {
-  let day = date.getUTCDate().toString() 
+  let day = date.getUTCDate().toString()
   let month = (date.getUTCMonth() + 1).toString()
 
   if(day.length !== 2) day = `0${day}`
