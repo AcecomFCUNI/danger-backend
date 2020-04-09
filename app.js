@@ -21,6 +21,6 @@ app.use((req, res, next) => {
 })
 
 app.use('/', indexRouter)
-app.use('/api', peruRouter)
+app.use('/api/covid/peru', peruRouter)
 
 module.exports = app

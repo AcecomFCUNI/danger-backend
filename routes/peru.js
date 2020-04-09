@@ -3,7 +3,7 @@ const router = express.Router()
 const axios = require('axios')
 
 import { cleaner } from '../functions/cleaner'
-import { dateGenerator } from '../functions/dateGenerator'
+import { dateGenerator, dateUTCGenerator } from '../functions/dateGenerator'
 import { queryGenerator } from '../functions/queryGenerator'
 
 const Departments = require('../mongo/models/departments')
@@ -11,11 +11,34 @@ const TotalData = require('../mongo/models/totalData')
 
 const url = process.env.COVID_PERU_CASES
 
-router.get('/covid/peru/:date', async (req, res) => {
-  console.log(req.params.date)
+router.get('/currentDate', async (req, res) => {
+  try {
+    let date = await TotalData.find().sort({ createdAt: -1 }).limit(1)
+
+    date = date[0].createdAt
+
+    const current = dateUTCGenerator(date)
+
+    res.send({
+      success: true,
+      error  : false,
+      message: {
+        currentDate: `${current.year}-${current.month}-${current.day}`
+      }
+    })
+  } catch (error) {
+    console.log(error)
+    res.send({
+      success: false,
+      error  : true,
+      message: 'Error while getting the current date from the database'
+    })
+  }
+})
+
+router.get('/:date', async (req, res) => {
   const date = new Date(`${req.params.date}T00:00:00.000Z`)
-  console.log(date)
-  
+
   try {
     const result = await Promise.all([
       TotalData.find({ createdAt: { $eq: date } }).exec(),
@@ -39,7 +62,7 @@ router.get('/covid/peru/:date', async (req, res) => {
   }
 })
 
-router.post('/covid/peru', async (req, res) => {
+router.post('/', async (req, res) => {
   let {
     body: { date }
   } = req
@@ -56,7 +79,7 @@ router.post('/covid/peru', async (req, res) => {
     date = dateGenerator(date)
 
     const departments = new Departments({
-      createdAt: date,
+      createdAt  : date,
       departments: response.departments
     })
 
@@ -79,7 +102,7 @@ router.post('/covid/peru', async (req, res) => {
     } catch (error) {
       res.send({
         success: false,
-        error: true,
+        error  : true,
         message: 'Error while saving the data in the database'
       })
     }

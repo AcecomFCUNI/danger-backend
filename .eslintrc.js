@@ -17,6 +17,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    "key-spacing": [2, { "align": "colon" }],
     "semi": [2, "never"],
     "react/no-unescaped-entities": 0,
     "react/prop-types": 0,
