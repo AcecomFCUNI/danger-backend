@@ -116,4 +116,10 @@
 
 - Updated:
   - New endpoint that provides the total data per department by day, and the Peru total data per day.
-  
+
+## Version 2.4.0
+
+- Updated:
+  - Homogenization of the data.
+  - Rebuild of the routes, now `controllers` are been used inside the `src` folder.
+  - New rules added to `.eslintrc.js` file

@@ -17,8 +17,8 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
-    "no-trailing-spaces": "error",
-    "comma-dangle": ["error", "never"],
+    'no-trailing-spaces': 'error',
+    'comma-dangle': ['error', 'never'],
     'max-len': ['error', { 'code': 80 }],
     'key-spacing': [2, { 'align': 'colon' }],
     'semi': [2, 'never'],

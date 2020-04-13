@@ -11,11 +11,13 @@ const dateUTCGenerator = date => {
   if(day.length !== 2) day = `0${day}`
   if(month.length !== 2) month = `0${month}`
 
-  return {
+  const result = {
     day,
     month,
     year: date.getUTCFullYear()
   }
+
+  return `${result.year}-${result.month}-${result.day}`
 }
 
 export { dateGenerator, dateUTCGenerator }

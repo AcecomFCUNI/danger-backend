@@ -3,8 +3,10 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 
-const indexRouter = require('./routes/index')
-const peruRouter = require('./routes/peru')
+const covidRouter = require('./src/routes/covid')
+const totalDataRouter = require('./src/routes/totalData')
+const currentDateRouter = require('./src/routes/currentDate')
+const dataPerDayRouter = require('./src/routes/dataPerDay')
 
 const app = express()
 
@@ -23,7 +25,9 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use('/', indexRouter)
-app.use('/api/covid/peru', peruRouter)
+app.use('/covid', covidRouter)
+app.use('/totalData', totalDataRouter)
+app.use('/currentDate', currentDateRouter)
+app.use('/dataPerDay', dataPerDayRouter)
 
 module.exports = app
