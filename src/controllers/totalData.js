@@ -9,16 +9,16 @@ class TotalDataFromPeru {
 
     let data
     try {
-      if (name === 'peru'){
+      if(name === 'peru'){
         data = await TotalData.find(
           {},
           {
             _id           : false,
             createdAt     : true,
             totalCases    : true,
+            totalDeaths   : true,
             totalDiscarded: true,
-            totalRecovered: true,
-            totalDeaths   : true
+            totalRecovered: true
           }
         )
         data = data.map(element => {
@@ -26,9 +26,9 @@ class TotalDataFromPeru {
           return {
             createdAt     : date,
             totalCases    : element.totalCases,
+            totalDeaths   : element.totalDeaths,
             totalDiscarded: element.totalDiscarded,
-            totalRecovered: element.totalRecovered,
-            totalDeaths   : element.totalDeaths
+            totalRecovered: element.totalRecovered
           }
         })
       }
@@ -47,11 +47,9 @@ class TotalDataFromPeru {
         data = data.map(element => {
           const date = dateUTCGenerator(element.createdAt)
           return {
-            createdAt: date,
-            data     : {
-              totalCases : element.departments[0].cases,
-              totalDeaths: element.departments[0].deaths
-            }
+            createdAt  : date,
+            totalCases : element.departments[0].cases,
+            totalDeaths: element.departments[0].deaths
           }
         })
       }

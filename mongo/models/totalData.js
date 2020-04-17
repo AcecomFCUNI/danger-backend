@@ -5,9 +5,9 @@ const TotalData = new Schema(
   {
     createdAt     : Date,
     totalCases    : Number,
+    totalDeaths   : Number,
     totalDiscarded: Number,
-    totalRecovered: Number,
-    totalDeaths   : Number
+    totalRecovered: Number
   },
   { collection: 'totalData' }
 )

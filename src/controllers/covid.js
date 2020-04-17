@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 const axios = require('axios')
 
 const Departments = require('../../mongo/models/departments')
@@ -31,9 +32,9 @@ class CovidController {
       const totalData = new TotalData({
         createdAt     : date,
         totalCases    : response.totalCases,
+        totalDeaths   : response.totalDeaths || 0,
         totalDiscarded: response.totalDiscarded,
-        totalRecovered: response.totalRecovered,
-        totalDeaths   : response.totalDeaths || 0
+        totalRecovered: response.totalRecovered
       })
 
       try {

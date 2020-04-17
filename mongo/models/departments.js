@@ -6,9 +6,9 @@ const Departments = new Schema(
     createdAt  : Date,
     departments: [
       {
-        name  : String,
         cases : Number,
-        deaths: Number
+        deaths: Number,
+        name  : String
       }
     ]
   },

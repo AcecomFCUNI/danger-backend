@@ -17,17 +17,48 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    curly: [
+      'error',
+      'multi'
+    ],
+    'sort-keys': 'error',
     'no-trailing-spaces': 'error',
-    'comma-dangle': ['error', 'never'],
-    'max-len': ['error', { 'code': 80 }],
-    'key-spacing': [2, { 'align': 'colon' }],
-    'semi': [2, 'never'],
+    'comma-dangle': [
+      'error',
+      'never'
+    ],
+    'max-len': [
+      'error',
+      {
+        'code': 80
+      }
+    ],
+    'key-spacing': [
+      2, 
+      {
+        'align': 'colon' 
+      }
+    ],
+    'keyword-spacing': [
+      'error', {
+        'overrides': {
+          'if': { 'after': false },
+          'for': { 'after': false },
+          'while': { 'after': false }
+        }
+      }
+    ],
+    'semi': [
+      2,
+      'never'],
     'react/no-unescaped-entities': 0,
     'react/prop-types': 0,
-    'space-before-function-paren': ['error', {
-      'anonymous': 'always',
-      'named': 'always',
-      'asyncArrow': 'always'
-    }]
+    'space-before-function-paren': [
+      'error', {
+        'anonymous': 'always',
+        'named': 'always',
+        'asyncArrow': 'always'
+      }
+    ]
   }
 }

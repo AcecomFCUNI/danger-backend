@@ -4,9 +4,9 @@ const cleaner = response => {
   result.departments = response.map(department => {
     if(department.attributes.MUERTES) deaths.push(department.attributes.MUERTES)
     return {
-      name  : department.attributes.REGION,
       cases : department.attributes.CONFIRMADOS,
-      deaths: department.attributes.MUERTES || 0
+      deaths: department.attributes.MUERTES || 0,
+      name  : department.attributes.REGION
     }
   })
 

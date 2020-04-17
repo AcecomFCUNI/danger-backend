@@ -3,7 +3,7 @@ const TotalData = require('../../mongo/models/totalData')
 import { dateUTCGenerator } from '../../functions/dateGenerator'
 
 class CurrentDate {
-  async init () {
+  async getCurrentDate () {
     try {
       let date = await TotalData.find().sort({ createdAt: -1 }).limit(1)
       date = date[0].createdAt

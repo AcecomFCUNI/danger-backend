@@ -122,4 +122,12 @@
 - Updated:
   - Homogenization of the data.
   - Rebuild of the routes, now `controllers` are been used inside the `src` folder.
-  - New rules added to `.eslintrc.js` file
+  - New rules added to the `.eslintrc.js` file.
+
+## Version 2.5.0:
+
+- Updated:
+  - The responses has been updated, in order to be clearly than before, and they are specified in the [docs](https://docs.google.com/document/d/1dLkX-Xc2-zHTslV9eknvi_qgDLdUvDLVzzBwV_mhjM8/edit?usp=sharing).
+  - Implemented [`cron`](https://www.npmjs.com/package/cron), to automatize the store in the database.
+  - Refactored the some files, the init file is `./bin/index.js` now, instead of `./bin/www`.
+  - New rules added to the `.eslintrc.js` file.

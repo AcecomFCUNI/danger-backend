@@ -1,13 +1,10 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
 const app = require('../app')
 const debug = require('debug')('covidperu:server')
 const http = require('http')
 const mongoose = require('mongoose')
+const CronJob = require('cron').CronJob
+import { CovidController } from '../src/controllers/covid'
+
 const mongoUri = process.env.MONGO
 
 /**
@@ -17,15 +14,15 @@ const mongoUri = process.env.MONGO
 const normalizePort = val => {
   const port = parseInt(val, 10)
 
-  if (isNaN(port)) {
+  if(isNaN(port))
     // named pipe
     return val
-  }
 
-  if (port >= 0) {
+
+  if(port >= 0)
     // port number
     return port
-  }
+
 
   return false
 }
@@ -35,9 +32,9 @@ const normalizePort = val => {
  */
 
 const onError = error => {
-  if (error.syscall !== 'listen') {
+  if(error.syscall !== 'listen')
     throw error
-  }
+
 
   var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port
 
@@ -89,7 +86,7 @@ server.on('error', onError)
 server.on('listening', onListening)
 
 mongoose.connect(mongoUri, {
-  useNewUrlParser: true,
+  useNewUrlParser   : true,
   useUnifiedTopology: true
 })
 
@@ -103,3 +100,12 @@ connection.on('error', () => {
 connection.once('open', () => {
   console.log('We are connected with the database!')
 })
+
+const job = new CronJob('00 00 01 * * 0-6', () => {
+  const currentDate = new Date
+  const cc = new CovidController()
+  // eslint-disable-next-line max-len
+  const args = { date: `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getUTCHours}` }
+  cc.init(args)
+})
+job.start()

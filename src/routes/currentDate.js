@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 const express = require('express')
 const router = express.Router()
 
@@ -7,7 +8,7 @@ const cd = new CurrentDate()
 
 router.get('/', async (req, res) => {
   try {
-    const result = await cd.init()
+    const result = await cd.getCurrentDate()
     res.send({
       success: true,
       error  : false,

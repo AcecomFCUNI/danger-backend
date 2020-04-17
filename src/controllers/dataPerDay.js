@@ -12,15 +12,18 @@ class DataPerDay {
         Departments.find({ createdAt: { $eq: date } }).exec()
       ])
 
+      const totalDataResult = result[0][0]
+      const departmentsResult = result[1][0]
+
       result[0] = {
-        createdAt     : result[0][0].createdAt,
-        totalCases    : result[0][0].totalCases,
-        totalDiscarded: result[0][0].totalDiscarded,
-        totalRecovered: result[0][0].totalRecovered,
-        totalDeaths   : result[0][0].totalDeaths
+        createdAt     : totalDataResult.createdAt,
+        totalCases    : totalDataResult.totalCases,
+        totalDeaths   : totalDataResult.totalDeaths,
+        totalDiscarded: totalDataResult.totalDiscarded,
+        totalRecovered: totalDataResult.totalRecovered
       }
 
-      const departments = result[1][0].departments.map(
+      const departments = departmentsResult.departments.map(
         ({ name, cases, deaths }) => ({
           name       : name,
           totalCases : cases,
@@ -29,7 +32,7 @@ class DataPerDay {
       )
 
       result[1] = {
-        createdAt  : result[1][0].createdAt,
+        createdAt  : departmentsResult.createdAt,
         departments: departments
       }
 

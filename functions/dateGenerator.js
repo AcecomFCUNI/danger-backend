@@ -4,7 +4,7 @@ const dateGenerator = date => {
   return rightDate
 }
 
-const dateUTCGenerator = date => {
+const dateUTCGenerator = (date, type=null) => {
   let day = date.getUTCDate().toString()
   let month = (date.getUTCMonth() + 1).toString()
 
@@ -17,7 +17,8 @@ const dateUTCGenerator = date => {
     year: date.getUTCFullYear()
   }
 
-  return `${result.year}-${result.month}-${result.day}`
+  if(type) return result
+  else return `${result.year}-${result.month}-${result.day}`
 }
 
 export { dateGenerator, dateUTCGenerator }
