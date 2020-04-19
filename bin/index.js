@@ -101,7 +101,7 @@ connection.once('open', () => {
   console.log('We are connected with the database!')
 })
 
-const job = new CronJob('00 00 01 * * 0-6', () => {
+const job = new CronJob('00 00 16 * * 0-6', () => {
   const currentDate = new Date
   const cc = new CovidController()
   // eslint-disable-next-line max-len

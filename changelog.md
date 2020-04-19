@@ -131,3 +131,8 @@
   - Implemented [`cron`](https://www.npmjs.com/package/cron), to automatize the store in the database.
   - Refactored the some files, the init file is `./bin/index.js` now, instead of `./bin/www`.
   - New rules added to the `.eslintrc.js` file.
+
+## Version 2.5.1:
+
+- Fixed:
+  - Time to update the database.
