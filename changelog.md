@@ -136,3 +136,9 @@
 
 - Fixed:
   - Time to update the database.
+
+## Version 2.5.2:
+
+- Fixed:
+  - Time to update the database.
+  - Fixed function to update the database.
