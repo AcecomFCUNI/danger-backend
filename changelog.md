@@ -142,3 +142,8 @@
 - Fixed:
   - Time to update the database.
   - Fixed function to update the database.
+
+## Version 2.5.2a:
+
+- Fixed:
+  - Time to update the database by the crontab.
