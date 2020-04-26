@@ -1,5 +1,6 @@
 /* eslint-disable sort-keys */
 const axios = require('axios')
+const nodemailer = require('nodemailer')
 
 const Departments = require('../../mongo/models/departments')
 const TotalData = require('../../mongo/models/totalData')
@@ -9,6 +10,8 @@ import { dateGenerator } from '../../functions/dateGenerator'
 import { queryGenerator } from '../../functions/queryGenerator'
 
 const url = process.env.COVID_PERU_CASES
+const email = process.env.EMAIL
+const password = process.env.PASSWORD
 
 class CovidController {
   async init (args) {
@@ -21,7 +24,6 @@ class CovidController {
       })
 
       response = cleaner(response.data.features)
-
       date = dateGenerator(date)
 
       const departments = new Departments({
@@ -39,18 +41,43 @@ class CovidController {
 
       try {
         await Promise.all([departments.save(), totalData.save()])
-
-        return {
-          success: true,
-          error  : false,
-          message: 'The data was successfully stored in the database'
-        }
+        await this.mailer(false, date)
       } catch (error) {
-        throw new Error('Error while saving the data in the database')
+        try {
+          // eslint-disable-next-line max-len
+          await this.mailer(true, date, 'Error while updating the database')
+        } catch (error) {
+          throw new Error('Error while sending the email')
+        }
+        throw new Error('Error while updating the database')
       }
     } catch (error) {
+      try {
+        await this.mailer(true, date, 'Error while loading the data')
+      } catch (error) {
+        throw new Error('Error while sending the email')
+      }
       throw new Error('Error while loading the data')
     }
+  }
+
+  async mailer (error, date, message=null){
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth   : {
+        user: email,
+        pass: password
+      }
+    })
+    const mailOptions = {
+      from   : `ACECOM's Covid app`,
+      to     : 'sluzquinosa@uni.pe, bryan.ve.bv@gmail.com, dandrade@chazki.com',
+      subject: error ? 'Error' : 'Confirmation',
+      // eslint-disable-next-line max-len
+      text   : error ? message : `The database was successfully updated with the information of ${date}`
+    }
+    // eslint-disable-next-line no-unused-vars
+    transporter.sendMail(mailOptions, (error, info) => {})
   }
 }
 

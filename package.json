@@ -1,6 +1,6 @@
 {
   "name": "covidperu",
-  "version": "2.5.2a",
+  "version": "2.6.0",
   "private": true,
   "scripts": {
     "start": "babel-node -r dotenv/config ./bin/index",
@@ -18,7 +18,8 @@
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "mongoose": "^5.9.7",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "nodemailer": "^6.4.6"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

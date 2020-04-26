@@ -147,3 +147,8 @@
 
 - Fixed:
   - Time to update the database by the crontab.
+
+## Version 2.6.0:
+
+- Updated:
+  - Implemented [`nodemailer`](https://nodemailer.com/about/) in order to send a confirmation email when the database was updated, or an error email when the database couldn't be updated.
