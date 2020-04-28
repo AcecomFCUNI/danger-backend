@@ -71,13 +71,16 @@ class CovidController {
     })
     const mailOptions = {
       from   : `ACECOM's Covid app`,
-      to     : 'sluzquinosa@uni.pe, bryan.ve.bv@gmail.com, dandrade@chazki.com',
+      to     : 'sluzquinosa@uni.pe, bryan.ve.bv@gmail.com',
       subject: error ? 'Error' : 'Confirmation',
       // eslint-disable-next-line max-len
       text   : error ? message : `The database was successfully updated with the information of ${date}`
     }
     // eslint-disable-next-line no-unused-vars
-    transporter.sendMail(mailOptions, (error, info) => {})
+    transporter.sendMail(mailOptions, (error, info) => {
+      if(error) console.log(error)
+      else console.log(info)
+    })
   }
 }
 

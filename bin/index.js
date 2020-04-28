@@ -101,7 +101,7 @@ connection.once('open', () => {
   console.log('We are connected with the database!')
 })
 
-const job = new CronJob('00 00 20 * * 0-6', () => {
+const job = new CronJob('00 45 19 * * 0-6', () => {
   const currentDate = new Date(new Date().getTime() + 24*60*60*1000)
   let month
   const cc = new CovidController()
@@ -112,6 +112,7 @@ const job = new CronJob('00 00 20 * * 0-6', () => {
 
   // eslint-disable-next-line max-len
   const args = { date: `${currentDate.getFullYear()}-${month}-${currentDate.getUTCDate()}` }
+  console.log(args)
   cc.init(args)
 })
 

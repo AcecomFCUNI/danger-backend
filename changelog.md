@@ -152,3 +152,9 @@
 
 - Updated:
   - Implemented [`nodemailer`](https://nodemailer.com/about/) in order to send a confirmation email when the database was updated, or an error email when the database couldn't be updated.
+
+## Version 2.6.0a:
+
+- Fixed:
+  - The data from `totalData` endpoint now returns the data sorted ascending.
+  - There is a `console.log` when an email is sended.

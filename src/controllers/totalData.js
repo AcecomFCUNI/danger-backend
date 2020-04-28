@@ -20,7 +20,7 @@ class TotalDataFromPeru {
             totalDiscarded: true,
             totalRecovered: true
           }
-        )
+        ).sort({ createdAt: 1 })
         data = data.map(element => {
           const date = dateUTCGenerator(element.createdAt)
           return {
@@ -42,7 +42,7 @@ class TotalDataFromPeru {
             createdAt  : true,
             departments: { $elemMatch: { name: name } }
           }
-        )
+        ).sort({ createdAt: 1 })
         // Formatting the data
         data = data.map(element => {
           const date = dateUTCGenerator(element.createdAt)
