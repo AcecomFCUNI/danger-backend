@@ -6,7 +6,7 @@ const Departments = require('../../mongo/models/departments')
 const TotalData = require('../../mongo/models/totalData')
 
 import { cleaner } from '../../functions/cleaner'
-import { dateGenerator } from '../../functions/dateGenerator'
+import { dateGenerator, dateUTCGenerator } from '../../functions/dateGenerator'
 import { queryGenerator } from '../../functions/queryGenerator'
 
 const url = process.env.COVID_PERU_CASES
@@ -41,7 +41,7 @@ class CovidController {
 
       try {
         await Promise.all([departments.save(), totalData.save()])
-        await this.mailer(false, date)
+        await this.mailer(false, dateUTCGenerator(date))
       } catch (error) {
         try {
           // eslint-disable-next-line max-len

@@ -1,6 +1,6 @@
 {
   "name": "covidperu",
-  "version": "2.6.0a",
+  "version": "2.6.1",
   "private": true,
   "scripts": {
     "start": "babel-node -r dotenv/config ./bin/index",

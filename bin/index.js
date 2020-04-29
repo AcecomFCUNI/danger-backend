@@ -36,7 +36,7 @@ const onError = error => {
     throw error
 
 
-  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port
+  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -58,8 +58,8 @@ const onError = error => {
  */
 
 const onListening = () => {
-  var addr = server.address()
-  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port
+  const addr = server.address()
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port
   debug('Listening on ' + bind)
 }
 
@@ -101,7 +101,7 @@ connection.once('open', () => {
   console.log('We are connected with the database!')
 })
 
-const job = new CronJob('00 45 19 * * 0-6', () => {
+const job = new CronJob('00 30 19 * * 0-6', () => {
   const currentDate = new Date(new Date().getTime() + 24*60*60*1000)
   let month
   const cc = new CovidController()

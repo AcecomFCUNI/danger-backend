@@ -158,3 +158,10 @@
 - Fixed:
   - The data from `totalData` endpoint now returns the data sorted ascending.
   - There is a `console.log` when an email is sended.
+
+## Version 2.6.1:
+
+- Fixed:
+  - Date when the mail is sended.
+- Implemented:
+  - A rule to avoid `var`.

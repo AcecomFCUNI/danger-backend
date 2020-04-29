@@ -17,6 +17,7 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'no-var': 'error',
     curly: [
       'error',
       'multi'
