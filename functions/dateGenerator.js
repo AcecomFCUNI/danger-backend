@@ -1,6 +1,7 @@
 const dateGenerator = date => {
   let rightDate = new Date(date)
   rightDate.setDate(rightDate.getDate() - 1)
+  rightDate.setHours(0, 0, 0, 0)
 
   return rightDate
 }

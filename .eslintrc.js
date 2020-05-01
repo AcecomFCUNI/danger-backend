@@ -15,8 +15,9 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
-  plugins: ['react'],
+  plugins: ['react', 'sort-imports-es6-autofix', 'sort-keys-fix'],
   rules: {
+    'sort-keys-fix/sort-keys-fix': 'warn',
     'no-var': 'error',
     curly: [
       'error',

@@ -44,7 +44,6 @@ class CovidController {
         await this.mailer(false, dateUTCGenerator(date))
       } catch (error) {
         try {
-          // eslint-disable-next-line max-len
           await this.mailer(true, date, 'Error while updating the database')
         } catch (error) {
           throw new Error('Error while sending the email')
@@ -63,18 +62,18 @@ class CovidController {
 
   async mailer (error, date, message=null){
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth   : {
-        user: email,
-        pass: password
-      }
+      auth: {
+        pass: password,
+        user: email
+      },
+      service: 'gmail'
     })
     const mailOptions = {
       from   : `ACECOM's Covid app`,
-      to     : 'sluzquinosa@uni.pe, bryan.ve.bv@gmail.com',
       subject: error ? 'Error' : 'Confirmation',
       // eslint-disable-next-line max-len
-      text   : error ? message : `The database was successfully updated with the information of ${date}`
+      text   : error ? message : `The database was successfully updated with the information of ${date}`,
+      to     : 'sluzquinosa@uni.pe, bryan.ve.bv@gmail.com'
     }
     // eslint-disable-next-line no-unused-vars
     transporter.sendMail(mailOptions, (error, info) => {
