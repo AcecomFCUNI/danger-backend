@@ -172,3 +172,8 @@
   - Date to be saved in the database now has hours, minutes, seconds and milliseconds are set to 0.
 - Implemented:
   - New rules to order the keys of an object.
+
+## Version 2.6.2a:
+
+- Fixed:
+  - Hour to the update the database from [`Heroku`](https://dashboard.heroku.com/).
