@@ -3,9 +3,10 @@ import path from 'path'
 import cookieParser from 'cookie-parser'
 import logger from 'morgan'
 
-import { TotalData } from './routes/totalData'
+import { Home } from './routes/home'
 import { CurrentDate } from './routes/currentDate'
 import { DataPerDay } from './routes/dataPerDay'
+import { TotalData } from './routes/totalData'
 
 const app = express()
 
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
   next()
 })
 
+app.use('', Home)
 app.use('/totalData', TotalData)
 app.use('/currentDate', CurrentDate)
 app.use('/dataPerDay', DataPerDay)
