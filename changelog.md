@@ -185,3 +185,18 @@
   - Capital letter for environment variables.
 - Fixed:
   - `dateGenerator` method.
+
+## Version 2.7.1:
+
+- Fixed:
+  - Error message that is sended by email.
+
+## Version 3.0.0:
+
+- Full refactorization of the code.
+- Implemented:
+  - Updated to `ES6`.
+  - `babel` is a dev dependence.
+  - `lib` folder now contains the project ready to be deployed in production.
+  - New rule to single quotes.
+  - All the project is inside `src` folder.

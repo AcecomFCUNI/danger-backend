@@ -1,13 +1,12 @@
-/* eslint-disable sort-keys */
-const axios = require('axios')
-const nodemailer = require('nodemailer')
+import axios from 'axios'
+import nodemailer from 'nodemailer'
 
-const Departments = require('../../mongo/models/departments')
-const TotalData = require('../../mongo/models/totalData')
+import { Departments } from '../mongo/models/departments'
+import { TotalData } from '../mongo/models/totalData'
 
-import { cleaner } from '../../functions/cleaner'
-import { dateGenerator, dateUTCGenerator } from '../../functions/dateGenerator'
-import { queryGenerator } from '../../functions/queryGenerator'
+import { cleaner } from '../functions/cleaner'
+import { dateGenerator, dateUTCGenerator } from '../functions/dateGenerator'
+import { queryGenerator } from '../functions/queryGenerator'
 
 const URL = process.env.COVID_PERU_CASES
 const EMAIL = process.env.EMAIL
@@ -21,7 +20,7 @@ class CovidController {
 
     try {
       let response = await axios({
-        URL: queryBody
+        url: queryBody
       })
 
       response = cleaner(response.data.features)
@@ -45,7 +44,11 @@ class CovidController {
         await this.mailer(false, dateUTCGenerator(date))
       } catch (error) {
         try {
-          await this.mailer(true, date, 'Error while updating the database')
+          await this.mailer(
+            true,
+            date,
+            `Error while updating the database\n${error.message}`
+          )
         } catch (error) {
           throw new Error('Error while sending the email')
         }
@@ -53,15 +56,19 @@ class CovidController {
       }
     } catch (error) {
       try {
-        await this.mailer(true, date, 'Error while loading the data')
+        await this.mailer(
+          true,
+          date,
+          `Error while loading the data.\n${error.message}`
+        )
       } catch (error) {
         throw new Error('Error while sending the email')
       }
-      throw new Error('Error while loading the data')
+      throw new Error(`Error while loading the data.\n${error.message}`)
     }
   }
 
-  async mailer (error, date, message=null){
+  async mailer (error, date, message = null) {
     const transporter = nodemailer.createTransport({
       auth: {
         pass: PASSWORD,
@@ -70,15 +77,17 @@ class CovidController {
       service: 'gmail'
     })
     let text, subject
-    if(error){
+    if(error) {
       text = message
       subject = 'Error'
     } else {
       subject = 'Confirmation'
-      // eslint-disable-next-line max-len
-      if(PORT === '4000') text = `The database was successfully updated with the information of ${date}. It was updated from Anthony's laptop.`
-      // eslint-disable-next-line max-len
-      else text = `The database was successfully updated with the information of ${date}. It was updated from Heroku server.`
+      if(PORT === '4000')
+        // eslint-disable-next-line max-len
+        text = `The database was successfully updated with the information of ${date}. It was updated from Anthony's laptop.`
+      else
+        // eslint-disable-next-line max-len
+        text = `The database was successfully updated with the information of ${date}. It was updated from Heroku server.`
     }
     const mailOptions = {
       from   : `ACECOM's Covid app`,
@@ -93,4 +102,4 @@ class CovidController {
   }
 }
 
-export { CovidController }
+export { CovidController as Covid}

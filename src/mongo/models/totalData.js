@@ -12,4 +12,6 @@ const TotalData = new Schema(
   { collection: 'totalData' }
 )
 
-module.exports = mongoose.model('TotalData', TotalData)
+const TotalDataModel = mongoose.model('TotalData', TotalData)
+
+export { TotalDataModel as TotalData }
