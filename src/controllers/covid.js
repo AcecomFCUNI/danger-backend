@@ -9,18 +9,19 @@ import { cleaner } from '../../functions/cleaner'
 import { dateGenerator, dateUTCGenerator } from '../../functions/dateGenerator'
 import { queryGenerator } from '../../functions/queryGenerator'
 
-const url = process.env.COVID_PERU_CASES
-const email = process.env.EMAIL
-const password = process.env.PASSWORD
+const URL = process.env.COVID_PERU_CASES
+const EMAIL = process.env.EMAIL
+const PASSWORD = process.env.PASSWORD
+const PORT = process.env.PORT
 
 class CovidController {
   async init (args) {
     let { date } = args
-    const queryBody = queryGenerator(url, date)
+    const queryBody = queryGenerator(URL, date)
 
     try {
       let response = await axios({
-        url: queryBody
+        URL: queryBody
       })
 
       response = cleaner(response.data.features)
@@ -63,19 +64,28 @@ class CovidController {
   async mailer (error, date, message=null){
     const transporter = nodemailer.createTransport({
       auth: {
-        pass: password,
-        user: email
+        pass: PASSWORD,
+        user: EMAIL
       },
       service: 'gmail'
     })
+    let text, subject
+    if(error){
+      text = message
+      subject = 'Error'
+    } else {
+      subject = 'Confirmation'
+      // eslint-disable-next-line max-len
+      if(PORT === '4000') text = `The database was successfully updated with the information of ${date}. It was updated from Anthony's laptop.`
+      // eslint-disable-next-line max-len
+      else text = `The database was successfully updated with the information of ${date}. It was updated from Heroku server.`
+    }
     const mailOptions = {
       from   : `ACECOM's Covid app`,
-      subject: error ? 'Error' : 'Confirmation',
-      // eslint-disable-next-line max-len
-      text   : error ? message : `The database was successfully updated with the information of ${date}`,
+      subject: subject,
+      text   : text,
       to     : 'sluzquinosa@uni.pe, bryan.ve.bv@gmail.com'
     }
-    // eslint-disable-next-line no-unused-vars
     transporter.sendMail(mailOptions, (error, info) => {
       if(error) console.log(error)
       else console.log(info)

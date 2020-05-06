@@ -1,7 +1,6 @@
 const dateGenerator = date => {
   let rightDate = new Date(date)
-  rightDate.setDate(rightDate.getDate() - 1)
-  rightDate.setHours(0, 0, 0, 0)
+  rightDate = new Date(rightDate - 24*60*60*1000)
 
   return rightDate
 }
