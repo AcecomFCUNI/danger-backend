@@ -101,8 +101,7 @@ connection.once('open', () => {
   console.log('We are connected with the database!')
 })
 
-// const job = new CronJob('00 30 16 * * *', () => { // for develop
-const job = new CronJob('00 00 21 * * *', () => { //for production
+const job = new CronJob('00 00 21 * * *', () => {
   const currentDate = new Date(new Date().getTime() + 24*60*60*1000)
   let month, day
   const cc = new CovidController()

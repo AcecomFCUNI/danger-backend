@@ -177,3 +177,11 @@
 
 - Fixed:
   - Hour to the update the database from [`Heroku`](https://dashboard.heroku.com/).
+
+## Version 2.7.0:
+
+- Implemented:
+  - Location from where that database was updated, Anthony's laptop or Heroku.
+  - Capital letter for environment variables.
+- Fixed:
+  - `dateGenerator` method.
