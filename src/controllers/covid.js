@@ -45,7 +45,11 @@ class CovidController {
         await this.mailer(false, dateUTCGenerator(date))
       } catch (error) {
         try {
-          await this.mailer(true, date, 'Error while updating the database')
+          await this.mailer(
+            true,
+            date,
+            `Error while updating the database\n${error.message}`
+          )
         } catch (error) {
           throw new Error('Error while sending the email')
         }
@@ -57,11 +61,11 @@ class CovidController {
       } catch (error) {
         throw new Error('Error while sending the email')
       }
-      throw new Error('Error while loading the data')
+      throw new Error(`Error while loading the data.\n${error.message}`)
     }
   }
 
-  async mailer (error, date, message=null){
+  async mailer (error, date, message = null) {
     const transporter = nodemailer.createTransport({
       auth: {
         pass: PASSWORD,
@@ -70,15 +74,17 @@ class CovidController {
       service: 'gmail'
     })
     let text, subject
-    if(error){
+    if(error) {
       text = message
       subject = 'Error'
     } else {
       subject = 'Confirmation'
-      // eslint-disable-next-line max-len
-      if(PORT === '4000') text = `The database was successfully updated with the information of ${date}. It was updated from Anthony's laptop.`
-      // eslint-disable-next-line max-len
-      else text = `The database was successfully updated with the information of ${date}. It was updated from Heroku server.`
+      if(PORT === '4000')
+        // eslint-disable-next-line max-len
+        text = `The database was successfully updated with the information of ${date}. It was updated from Anthony's laptop.`
+      else
+        // eslint-disable-next-line max-len
+        text = `The database was successfully updated with the information of ${date}. It was updated from Heroku server.`
     }
     const mailOptions = {
       from   : `ACECOM's Covid app`,

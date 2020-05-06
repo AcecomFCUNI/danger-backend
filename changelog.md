@@ -185,3 +185,8 @@
   - Capital letter for environment variables.
 - Fixed:
   - `dateGenerator` method.
+
+## Version 2.7.1:
+
+- Fixed:
+  - Error message that is sended by email.
