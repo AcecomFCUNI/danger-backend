@@ -1,6 +1,5 @@
-const TotalData = require('../../mongo/models/totalData')
-
-import { dateUTCGenerator } from '../../functions/dateGenerator'
+import { TotalData } from '../mongo/models/totalData'
+import { dateUTCGenerator } from '../functions/dateGenerator'
 
 class CurrentDate {
   async getCurrentDate () {

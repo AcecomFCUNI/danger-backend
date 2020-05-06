@@ -1,8 +1,7 @@
-/* eslint-disable sort-keys */
-const express = require('express')
-const router = express.Router()
-
+import express from 'express'
 import { DataPerDay } from '../controllers/dataPerDay'
+
+const router = express.Router()
 
 const dpd = new DataPerDay()
 
@@ -14,20 +13,18 @@ router.post('/', async (req, res) => {
     const result = await dpd.init(args)
 
     res.send({
-      success: true,
       error  : false,
       message: {
-        totalData      : result[0],
-        departmentsData: result[1]
+        departmentsData: result[1],
+        totalData      : result[0]
       }
     })
   } catch (error) {
     res.send({
-      success: false,
       error  : true,
       message: error.message
     })
   }
 })
 
-module.exports = router
+export { router as DataPerDay }

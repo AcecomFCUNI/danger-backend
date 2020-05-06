@@ -1,8 +1,7 @@
-/* eslint-disable sort-keys */
-const express = require('express')
-const router = express.Router()
-
+import express from 'express'
 import { CurrentDate } from '../controllers/currentDate'
+
+const router = express.Router()
 
 const cd = new CurrentDate()
 
@@ -10,7 +9,6 @@ router.get('/', async (req, res) => {
   try {
     const result = await cd.getCurrentDate()
     res.send({
-      success: true,
       error  : false,
       message: {
         currentDate: result
@@ -18,11 +16,10 @@ router.get('/', async (req, res) => {
     })
   } catch (error) {
     res.send({
-      success: false,
       error  : true,
       message: error.message
     })
   }
 })
 
-module.exports = router
+export { router as CurrentDate }

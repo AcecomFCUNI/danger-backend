@@ -15,4 +15,6 @@ const Departments = new Schema(
   { collection: 'departments' }
 )
 
-module.exports = mongoose.model('Departments', Departments)
+const DepartmentsModel = mongoose.model('Departments', Departments)
+
+export { DepartmentsModel as Departments }

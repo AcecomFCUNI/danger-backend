@@ -1,11 +1,13 @@
-const app = require('../app')
-const debug = require('debug')('covidperu:server')
-const http = require('http')
-const mongoose = require('mongoose')
-const CronJob = require('cron').CronJob
-import { CovidController } from '../src/controllers/covid'
+import Debug from 'debug'
+import http from 'http'
+import { CronJob } from 'cron'
 
-const mongoUri = process.env.MONGO
+import { app } from '../app'
+import { Covid } from '../controllers/covid'
+import { connection } from '../mongo/index'
+
+const debug = Debug('covidperu:server')
+const PORT = process.env.PORT
 
 /**
  * Normalize a port into a number, string, or false.
@@ -18,11 +20,9 @@ const normalizePort = val => {
     // named pipe
     return val
 
-
   if(port >= 0)
     // port number
     return port
-
 
   return false
 }
@@ -67,7 +67,7 @@ const onListening = () => {
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000')
+const port = normalizePort(PORT || '3000')
 app.set('port', port)
 console.log(`APP RUNNING AT PORT ${port}`)
 
@@ -85,13 +85,6 @@ server.listen(port)
 server.on('error', onError)
 server.on('listening', onListening)
 
-mongoose.connect(mongoUri, {
-  useNewUrlParser   : true,
-  useUnifiedTopology: true
-})
-
-const connection = mongoose.connection
-
 connection.on('error', () => {
   console.log(
     'There was a problem while establishing a connection with the database'
@@ -104,7 +97,7 @@ connection.once('open', () => {
 const job = new CronJob('00 00 21 * * *', () => {
   const currentDate = new Date(new Date().getTime() + 24*60*60*1000)
   let month, day
-  const cc = new CovidController()
+  const cc = new Covid()
 
   currentDate.getMonth() >= 10
     ? month =  (currentDate.getMonth() + 1).toString()
