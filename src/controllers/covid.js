@@ -1,13 +1,12 @@
-/* eslint-disable sort-keys */
-const axios = require('axios')
-const nodemailer = require('nodemailer')
+import axios from 'axios'
+import nodemailer from 'nodemailer'
 
-const Departments = require('../../mongo/models/departments')
-const TotalData = require('../../mongo/models/totalData')
+import { Departments } from '../mongo/models/departments'
+import { TotalData } from '../mongo/models/totalData'
 
-import { cleaner } from '../../functions/cleaner'
-import { dateGenerator, dateUTCGenerator } from '../../functions/dateGenerator'
-import { queryGenerator } from '../../functions/queryGenerator'
+import { cleaner } from '../functions/cleaner'
+import { dateGenerator, dateUTCGenerator } from '../functions/dateGenerator'
+import { queryGenerator } from '../functions/queryGenerator'
 
 const URL = process.env.COVID_PERU_CASES
 const EMAIL = process.env.EMAIL
@@ -21,7 +20,7 @@ class CovidController {
 
     try {
       let response = await axios({
-        URL: queryBody
+        url: queryBody
       })
 
       response = cleaner(response.data.features)
@@ -57,7 +56,11 @@ class CovidController {
       }
     } catch (error) {
       try {
-        await this.mailer(true, date, 'Error while loading the data')
+        await this.mailer(
+          true,
+          date,
+          `Error while loading the data.\n${error.message}`
+        )
       } catch (error) {
         throw new Error('Error while sending the email')
       }
@@ -99,4 +102,4 @@ class CovidController {
   }
 }
 
-export { CovidController }
+export { CovidController as Covid}

@@ -1,5 +1,5 @@
-const Departments = require('../../mongo/models/departments')
-const TotalData = require('../../mongo/models/totalData')
+import { Departments } from '../mongo/models/departments'
+import { TotalData } from '../mongo/models/totalData'
 
 class DataPerDay {
   async init (args) {

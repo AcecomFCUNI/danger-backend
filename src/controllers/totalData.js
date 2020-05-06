@@ -1,7 +1,7 @@
-const Departments = require('../../mongo/models/departments')
-const TotalData = require('../../mongo/models/totalData')
+import { Departments } from '../mongo/models/departments'
+import { TotalData } from '../mongo/models/totalData'
 
-import { dateUTCGenerator } from '../../functions/dateGenerator'
+import { dateUTCGenerator } from '../functions/dateGenerator'
 
 class TotalDataFromPeru {
   async init (args) {
@@ -60,4 +60,4 @@ class TotalDataFromPeru {
   }
 }
 
-export { TotalDataFromPeru }
+export { TotalDataFromPeru as TotalData }
