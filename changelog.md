@@ -200,3 +200,8 @@
   - `lib` folder now contains the project ready to be deployed in production.
   - New rule to single quotes.
   - All the project is inside `src` folder.
+
+## Version 3.1.0:
+
+- Implemented:
+  - `home` route.
