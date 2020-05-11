@@ -1,6 +1,6 @@
 {
   "name": "covidperu",
-  "version": "4.1.1a",
+  "version": "4.1.1b",
   "private": true,
   "scripts": {
     "build": "babel src -d lib",

@@ -238,3 +238,8 @@
 
 - Fixed:
   - `Dockerfile`.
+
+## Version 4.1.1b:
+
+- Fixed:
+  - `Dockerfile`.
