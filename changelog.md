@@ -223,3 +223,8 @@
 
 - Fixed:
   - The request to get all the data now it's done using _perú_ rather than _PERÚ_.
+
+## Version 4.0.0c:
+
+- Fixed:
+  - `Dockerfile` not longer installs `yarn` globally.

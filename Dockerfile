@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json ./
 COPY yarn.lock ./
 
-RUN npm i -g yarn
+# RUN npm i -g yarn
 RUN yarn install --prod
 
 COPY . .
