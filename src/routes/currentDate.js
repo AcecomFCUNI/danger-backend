@@ -1,5 +1,6 @@
 import express from 'express'
 import { CurrentDate } from '../controllers/currentDate'
+import { response } from '../functions/response'
 
 const router = express.Router()
 
@@ -8,17 +9,10 @@ const cd = new CurrentDate()
 router.get('/', async (req, res) => {
   try {
     const result = await cd.getCurrentDate()
-    res.send({
-      error  : false,
-      message: {
-        currentDate: result
-      }
-    })
+
+    response(res, false, { currentDate: result }, 200)
   } catch (error) {
-    res.send({
-      error  : true,
-      message: error.message
-    })
+    response(res, true, error.message, 500)
   }
 })
 

@@ -1,29 +1,27 @@
 import express from 'express'
 import { DataPerDay } from '../controllers/dataPerDay'
+import { response } from '../functions/response'
 
 const router = express.Router()
 
 const dpd = new DataPerDay()
 
 router.post('/', async (req, res) => {
-
   try {
-    let { body: { args } } = req
+    let {
+      body: { args }
+    } = req
 
     const result = await dpd.init(args)
 
-    res.send({
-      error  : false,
-      message: {
-        departmentsData: result[1],
-        totalData      : result[0]
-      }
-    })
+    response(
+      res,
+      false,
+      { departmentsData: result[1], totalData: result[0] },
+      200
+    )
   } catch (error) {
-    res.send({
-      error  : true,
-      message: error.message
-    })
+    response(res, true, error.message, 500)
   }
 })
 

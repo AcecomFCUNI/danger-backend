@@ -14,4 +14,4 @@ const TotalData = new Schema(
 
 const TotalDataModel = mongoose.model('TotalData', TotalData)
 
-export { TotalDataModel as TotalData }
+export { TotalDataModel }

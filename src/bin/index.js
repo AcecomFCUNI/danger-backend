@@ -3,7 +3,7 @@ import http from 'http'
 import { CronJob } from 'cron'
 
 import { app } from '../app'
-import { Covid } from '../controllers/covid'
+import { Updater } from '../functions/dataBaseUpdater'
 import { connection } from '../mongo/index'
 
 const debug = Debug('covidperu:server')
@@ -94,10 +94,10 @@ connection.once('open', () => {
   console.log('We are connected with the database!')
 })
 
-const job = new CronJob('00 30 15 * * *', () => {
+const job = new CronJob('00 00 21 * * *', () => {
   const currentDate = new Date(new Date().getTime() + 24*60*60*1000)
   let month, day
-  const cc = new Covid()
+  const cc = new Updater()
 
   currentDate.getMonth() >= 10
     ? month =  (currentDate.getMonth() + 1).toString()

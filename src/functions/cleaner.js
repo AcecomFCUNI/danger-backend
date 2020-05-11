@@ -1,9 +1,11 @@
-const cleaner = response => {
+const cleaner = (response) => {
   let result = {}
   let deaths = []
   try {
-    result.departments = response.map(department => {
-    if(department.attributes.MUERTES) deaths.push(department.attributes.MUERTES)
+    result.departments = response.map((department) => {
+      if(department.attributes.MUERTES)
+        deaths.push(department.attributes.MUERTES)
+
       return {
         cases : department.attributes.CONFIRMADOS,
         deaths: department.attributes.MUERTES || 0,
@@ -15,8 +17,8 @@ const cleaner = response => {
     result.totalDiscarded = response[0].attributes.TOTAL_DESCARTADOS
     result.totalRecovered = response[0].attributes.RECUPERADOS
     deaths.length > 1
-    ? result.totalDeaths = deaths.reduce((total, value) => total + value)
-    : result.totalDeaths = deaths[0]
+      ? (result.totalDeaths = deaths.reduce((total, value) => total + value))
+      : (result.totalDeaths = deaths[0])
 
     return result
   } catch (error) {

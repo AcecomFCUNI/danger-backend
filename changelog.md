@@ -1,4 +1,4 @@
-# Acecom Covid 19
+# ACECOM Covid 19
 
 ## Version 1.0.0
 
@@ -205,3 +205,56 @@
 
 - Implemented:
   - `home` route.
+
+## Version 4.0.0:
+
+- Implemented:
+  - Covid controller is now a function called `databaseUpdater`.
+  - Refactorization of some code.
+  - Creating ad `Dockerfile` to change the way to deploy.
+  - New `lib` folder ready to deploy.
+
+## Version 4.0.0a:
+
+- Fixed:
+  - The request to get all the data now it's done using _PERÚ_ rather than _peru_.
+
+## Version 4.0.0b:
+
+- Fixed:
+  - The request to get all the data now it's done using _perú_ rather than _PERÚ_.
+
+## Version 4.0.0c:
+
+- Fixed:
+  - `Dockerfile` not longer installs `yarn` globally.
+
+## Version 4.1.1:
+
+- Fixed:
+  - Updating `lib` folder.
+
+## Version 4.1.1a:
+
+- Fixed:
+  - `Dockerfile`.
+
+## Version 4.1.1b:
+
+- Fixed:
+  - `Dockerfile`.
+
+## Version 4.1.1c:
+
+- Fixed:
+  - `Dockerfile`.
+
+## Version 4.1.2:
+
+- Fixed:
+  - Now the request must be using the correct spelling of each peruvian department.
+
+## Version 4.1.2a:
+
+- Fixed:
+  - Updating `lib` folder.
