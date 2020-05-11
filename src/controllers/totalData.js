@@ -9,7 +9,7 @@ class TotalDataFromPeru {
     let data
 
     try {
-      if(name === 'peru') {
+      if(name === 'PERÚ') {
         data = await TotalDataModel.find(
           {},
           'createdAt totalCases totalDeaths totalDiscarded totalRecovered'

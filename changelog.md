@@ -213,3 +213,8 @@
   - Refactorization of some code.
   - Creating ad `Dockerfile` to change the way to deploy.
   - New `lib` folder ready to deploy.
+
+## Version 4.0.0a:
+
+- Fixed:
+  - The request to get all the data now it's done using _PERÚ_ rather than _peru_.
