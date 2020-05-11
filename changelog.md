@@ -228,3 +228,8 @@
 
 - Fixed:
   - `Dockerfile` not longer installs `yarn` globally.
+
+## Version 4.1.1:
+
+- Fixed:
+  - Updating `lib` folder.
