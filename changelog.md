@@ -253,3 +253,8 @@
 
 - Fixed:
   - Now the request must be using the correct spelling of each peruvian department.
+
+## Version 4.1.2a:
+
+- Fixed:
+  - Updating `lib` folder.
