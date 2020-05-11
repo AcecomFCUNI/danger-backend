@@ -248,3 +248,8 @@
 
 - Fixed:
   - `Dockerfile`.
+
+## Version 4.1.2:
+
+- Fixed:
+  - Now the request must be using the correct spelling of each peruvian department.

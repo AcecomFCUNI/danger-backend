@@ -2,6 +2,7 @@ import { DepartmentsModel } from '../mongo/models/departments'
 import { TotalDataModel } from '../mongo/models/totalData'
 
 import { dateUTCGenerator } from '../functions/dateGenerator'
+import { removeDiacritics } from '../functions/correctSpelling'
 
 class TotalDataFromPeru {
   async init (args) {
@@ -27,7 +28,7 @@ class TotalDataFromPeru {
           }
         })
       } else {
-        name = name.toUpperCase()
+        name = removeDiacritics(name)
         // Query to get all the data per departments by day
         data = await DepartmentsModel.find(
           { 'departments.name': name },
