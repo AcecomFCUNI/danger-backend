@@ -1,4 +1,4 @@
-# Acecom Covid 19
+# ACECOM Covid 19
 
 ## Version 1.0.0
 
@@ -205,3 +205,11 @@
 
 - Implemented:
   - `home` route.
+
+## Version 4.0.0:
+
+- Implemented:
+  - Covid controller is now a function called `databaseUpdater`.
+  - Refactorization of some code.
+  - Creating ad `Dockerfile` to change the way to deploy.
+  - New `lib` folder ready to deploy.
