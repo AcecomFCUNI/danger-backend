@@ -218,3 +218,8 @@
 
 - Fixed:
   - The request to get all the data now it's done using _PERÚ_ rather than _peru_.
+
+## Version 4.0.0b:
+
+- Fixed:
+  - The request to get all the data now it's done using _perú_ rather than _PERÚ_.
