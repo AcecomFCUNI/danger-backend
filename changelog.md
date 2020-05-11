@@ -233,3 +233,8 @@
 
 - Fixed:
   - Updating `lib` folder.
+
+## Version 4.1.1a:
+
+- Fixed:
+  - `Dockerfile`.

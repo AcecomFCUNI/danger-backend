@@ -8,6 +8,6 @@ COPY yarn.lock ./
 # RUN npm i -g yarn
 RUN yarn install --prod
 
-COPY /lib .
+COPY /lib /lib
 
 CMD [ "yarn", "start" ]
