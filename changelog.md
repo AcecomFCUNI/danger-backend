@@ -258,3 +258,8 @@
 
 - Fixed:
   - Updating `lib` folder.
+
+## Version 4.2.0:
+
+- Implement:
+  - `readme.md` file with the documentation.

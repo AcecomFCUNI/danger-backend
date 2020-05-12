@@ -1,13 +1,31 @@
 {
-  "name": "covidperu",
-  "version": "4.1.2a",
-  "private": true,
+  "name": "danger-backend",
+  "version": "4.2.0",
+  "description": "Backend of the ACECOM's Covid 19 application",
+  "private": false,
   "scripts": {
     "build": "babel src -d lib",
     "start": "node lib/bin/index",
     "start:dev": "node -r dotenv/config lib/bin/index",
     "service": "nodemon --exec babel-node -r dotenv/config src/bin/index"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AcecomFCUNI/danger-backend"
+  },
+  "keywords": [
+    "ACECOM",
+    "Danger",
+    "Coronavirus",
+    "Covid",
+    "Covid 19"
+  ],
+  "author": "AnthonyLzq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AcecomFCUNI/danger-backend/issues"
+  },
+  "homepage": "https://github.com/AcecomFCUNI/danger-backend#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "cookie-parser": "~1.4.4",
