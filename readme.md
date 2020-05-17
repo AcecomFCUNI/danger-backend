@@ -8,18 +8,14 @@ You need an `.env` file in order to run this project. It looks like this:
 
 ```bash
 COVID_PERU_CASES_1=https://geocatmin.ingemmet.gob.pe/arcgis/rest/services/COVIT_PERU_REGION/MapServer/0/query
-COVID_PERU_CASES_2=https://covid19.minsa.gob.pe/sala_situacional.asp
 EMAIL_SENDER=
 EMAIL_RECEPTOR_1=
 EMAIL_RECEPTOR_2=
-OCR_API_KEY=
+HOME=https://acecom-danger.herokuapp.com/
 MONGO=
 PASSWORD=
 PORT=
-SELECTOR_DATE=svg[class="card"] > g > text > tspan
-SELECTOR_TITLE=div[title="Pais"]
-SELECTOR_DEPARTMENTS=div[class="pivotTableCellWrap cell-interactive "]
-SELECTOR_COVID_CASES=div[class="pivotTableCellWrap cell-interactive tablixAlignRight "]
+TIME=
 ```
 
 ## Setup
@@ -63,7 +59,63 @@ There are four endpoints implemented:
       }
       ```
 
-3. DataPerDay: `/dataPerDay`, it has a post method. This has two different functionalities, according to the payload you send, here are some examples:
+3. DataInEachDay: `/dataInEachDay`, it has a post method. This method has two different functionalities, according to the payload you send, here are some examples:
+
+    - To get the data from Peru (corresponding to an specific date):
+    
+      ```json
+      {
+        "args": {
+          "name": "perú"
+        }
+      }
+      ```
+
+    - To get the data from a department (corresponding to an specific date):
+
+      ```json
+      {
+        "args": {
+          "name": "departmentName"
+        }
+      }
+      ```
+
+    - In case of success, for the payload previously, you will get the following responses (respectively):
+
+        1. Data from Peru:
+
+        ```json
+        {
+          "error": false,
+          "message": [
+            {
+              "cases": 1, 
+              "createdAt": "YYYY-MM-DD",
+              "deaths": 0,
+              "discarded": 154,
+              "recovered": 0
+            }
+          ]
+        }
+        ```
+
+        2. Data from any department:
+
+        ```json
+        {
+          "error": false,
+          "message": [
+            {
+              "cases": 1,
+              "createdAt": "YYYY-MM-DD",
+              "deaths": 0
+            }
+          ]
+        }
+        ```
+
+4. DataPerDay: `/dataPerDay`, it has a post method. This has two different functionalities, according to the payload you send, here are some examples:
 
     - To get the accumulated data from an specific date from Peru:
     
@@ -101,7 +153,7 @@ There are four endpoints implemented:
       ```
 
 
-4. TotalData: `/totalData`, it has a post method. This method has two different functionalities, according to the payload you send, here are some examples:
+5. TotalData: `/totalData`, it has a post method. This method has two different functionalities, according to the payload you send, here are some examples:
 
     - To get all the data from Peru:
     

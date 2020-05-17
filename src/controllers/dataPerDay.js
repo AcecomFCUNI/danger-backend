@@ -9,7 +9,7 @@ class DataPerDay {
       let { date } = args
       date = dateGenerator(date, 1)
 
-      let result = await Promise.all([
+      const result = await Promise.all([
         TotalDataModel.findOne({ createdAt: { $eq: date } }),
         DepartmentsModel.findOne({ createdAt: { $eq: date } })
       ])

@@ -6,7 +6,7 @@ const router = express.Router()
 
 const cd = new CurrentDate()
 
-router.get('/', async (req, res) => {
+router.get('/currentDate', async (req, res) => {
   try {
     const result = await cd.getCurrentDate()
 

@@ -17,6 +17,9 @@ module.exports = {
   },
   plugins: ['react', 'sort-imports-es6-autofix', 'sort-keys-fix'],
   rules: {
+    'arrow-parens': ['error', 'as-needed'],
+    'no-extra-parens': 'error',
+    'prefer-const': 'error',
     'object-curly-spacing': ['error', 'always'],
     'newline-before-return': 'error',
     'quotes': ['error', 'single', { 'allowTemplateLiterals': true }],

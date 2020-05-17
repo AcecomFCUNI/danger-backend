@@ -16,7 +16,7 @@ class TotalDataFromPeru {
           'createdAt totalCases totalDeaths totalDiscarded totalRecovered'
         ).sort({ createdAt: 1 })
 
-        data = data.map((element) => {
+        data = data.map(element => {
           const date = dateUTCGenerator(element.createdAt)
 
           return {
@@ -39,7 +39,7 @@ class TotalDataFromPeru {
           }
         ).sort({ createdAt: 1 })
         // Formatting the data
-        data = data.map((element) => {
+        data = data.map(element => {
           const date = dateUTCGenerator(element.createdAt)
 
           return {

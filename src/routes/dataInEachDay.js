@@ -1,15 +1,16 @@
 import express from 'express'
 import { TotalData } from '../controllers/totalData'
+import { fromAccumulateToDaily } from '../functions/fromAccumulateToDaily'
 import { response } from '../functions/response'
 
 const router = express.Router()
-
 const td = new TotalData()
 
-router.post('/totalData', async (req, res) => {
+router.post('/dataInEachDay', async (req, res) => {
   const { body: { args } } = req
   try {
-    const result = await td.init(args)
+    let result = await td.init(args)
+    result = fromAccumulateToDaily(result, args)
 
     response(res, false, result, 200)
   } catch (error) {
@@ -17,4 +18,4 @@ router.post('/totalData', async (req, res) => {
   }
 })
 
-export { router as TotalData }
+export { router as DataInEachDay }

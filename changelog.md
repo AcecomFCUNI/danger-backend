@@ -280,3 +280,16 @@
   - `dateGenerator` function, to avoid time zone.
   - `dataPerDat` controller now implements `dateGenerator` function.
   - [Documentation](./readme).
+
+## Version 4.4.0:
+
+  - Removed:
+    - The scrapper (and the dependencies need it to do this) because the data from the situational room incomplete.
+  - Implemented:
+    - `src/routes/routes.js` file, in order to apply the routes to the server.
+    - `dataInEachDay` endpoint, to get the daily data.
+    - `fromAccumulateToDaily` function, to clean the accumulate data and present it as daily.
+    - `process.on` function, in the `bin/index.js` file, in order to handle the unhandled rejection of promises, if there were some.
+  - Updated:
+    - `.eslintrc.js` file, added some new rules, to avoid unnecessary parenthesis, and to prefer constants.
+    - `setInterval` function, to repeat the request to the API in case it fails every 28 minutes.

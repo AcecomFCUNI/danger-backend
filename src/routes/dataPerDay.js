@@ -6,12 +6,9 @@ const router = express.Router()
 
 const dpd = new DataPerDay()
 
-router.post('/', async (req, res) => {
+router.post('/dataPerDay', async (req, res) => {
   try {
-    let {
-      body: { args }
-    } = req
-
+    const { body: { args } } = req
     const result = await dpd.init(args)
 
     response(

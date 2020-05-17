@@ -1,5 +1,5 @@
-let result = {}
-let deaths = []
+const result = {}
+const deaths = []
 
 const cleanerForAPI = response => {
   try {
@@ -18,8 +18,8 @@ const cleanerForAPI = response => {
     result.totalDiscarded = response[0].attributes.TOTAL_DESCARTADOS
     result.totalRecovered = response[0].attributes.RECUPERADOS
     deaths.length > 1
-      ? (result.totalDeaths = deaths.reduce((total, value) => total + value))
-      : (result.totalDeaths = deaths[0])
+      ? result.totalDeaths = deaths.reduce((total, value) => total + value)
+      : result.totalDeaths = deaths[0]
 
     return result
   } catch (error) {
@@ -29,12 +29,12 @@ const cleanerForAPI = response => {
 
 const cleanerForScraper = response => {
   try {
-    let {
-      departments,
+    let { departments } = response
+    const {
       sample,
       totalCases,
-      totalDeaths,
-      totalRecovered
+      totalDeaths
+      // totalRecovered
     } = response
 
     const orderer4LastDep = departments.slice(21).reverse()
@@ -52,7 +52,7 @@ const cleanerForScraper = response => {
     result.totalCases = cleanerForTNumbers(totalCases[0])
     result.totalDeaths = cleanerForTNumbers(totalDeaths[0])
     result.totalDiscarded = sample - result.totalCases
-    result.totalRecovered = cleanerForTNumbers(totalRecovered[0])
+    // result.totalRecovered = cleanerForTNumbers(totalRecovered[0])
 
     return result
   } catch (error) {
