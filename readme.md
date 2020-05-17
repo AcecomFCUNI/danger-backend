@@ -7,13 +7,19 @@ You need to have [`Node.js`](https://nodejs.org/en/) and [`yarn`](https://yarnpk
 You need an `.env` file in order to run this project. It looks like this:
 
 ```bash
-COVID_PERU_CASES=https://geocatmin.ingemmet.gob.pe/arcgis/rest/services/COVIT_PERU_REGION/MapServer/0/query
+COVID_PERU_CASES_1=https://geocatmin.ingemmet.gob.pe/arcgis/rest/services/COVIT_PERU_REGION/MapServer/0/query
+COVID_PERU_CASES_2=https://covid19.minsa.gob.pe/sala_situacional.asp
 EMAIL_SENDER=
 EMAIL_RECEPTOR_1=
 EMAIL_RECEPTOR_2=
+OCR_API_KEY=
 MONGO=
 PASSWORD=
 PORT=
+SELECTOR_DATE=svg[class="card"] > g > text > tspan
+SELECTOR_TITLE=div[title="Pais"]
+SELECTOR_DEPARTMENTS=div[class="pivotTableCellWrap cell-interactive "]
+SELECTOR_COVID_CASES=div[class="pivotTableCellWrap cell-interactive tablixAlignRight "]
 ```
 
 ## Setup
@@ -153,7 +159,7 @@ There are four endpoints implemented:
 
 ### Notes
 
-1. In case of error you will get a generic error as follows (plus a 500 error ):
+1. In case of error you will get a generic error as follows (plus a 500 error):
     ```json
     {
       "error": true,

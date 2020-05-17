@@ -1,8 +1,9 @@
-const cleaner = (response) => {
-  let result = {}
-  let deaths = []
+let result = {}
+let deaths = []
+
+const cleanerForAPI = response => {
   try {
-    result.departments = response.map((department) => {
+    result.departments = response.map(department => {
       if(department.attributes.MUERTES)
         deaths.push(department.attributes.MUERTES)
 
@@ -26,4 +27,47 @@ const cleaner = (response) => {
   }
 }
 
-export { cleaner }
+const cleanerForScraper = response => {
+  try {
+    let {
+      departments,
+      sample,
+      totalCases,
+      totalDeaths,
+      totalRecovered
+    } = response
+
+    const orderer4LastDep = departments.slice(21).reverse()
+    departments = departments.slice(0, 22).concat(orderer4LastDep)
+
+    result.departments = []
+
+    for(let i = 1; i < 26; i++)
+      result.departments.push({
+        cases : cleanerForTNumbers(totalCases[i]),
+        deaths: cleanerForTNumbers(totalDeaths[i]),
+        name  : departments[i]
+      })
+
+    result.totalCases = cleanerForTNumbers(totalCases[0])
+    result.totalDeaths = cleanerForTNumbers(totalDeaths[0])
+    result.totalDiscarded = sample - result.totalCases
+    result.totalRecovered = cleanerForTNumbers(totalRecovered[0])
+
+    return result
+  } catch (error) {
+    // eslint-disable-next-line max-len
+    throw new Error(`Something went wrong while cleaning the data from the scrapper.\n${error.message}`)
+  }
+}
+
+const cleanerForTNumbers = text => {
+  if(text){
+    const numPattern = /\d+/g
+    const result = text.match(numPattern).join('')
+
+    return parseInt(result)
+  } else return null
+}
+
+export { cleanerForAPI, cleanerForScraper, cleanerForTNumbers }

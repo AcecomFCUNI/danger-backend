@@ -1,12 +1,13 @@
 import { DepartmentsModel } from '../mongo/models/departments'
 import { TotalDataModel } from '../mongo/models/totalData'
 import { correctSpelling } from '../functions/correctSpelling'
+import { dateGenerator } from '../functions/dateGenerator'
 
 class DataPerDay {
   async init (args) {
     try {
       let { date } = args
-      date = new Date(`${date}T00:00:00.000Z`)
+      date = dateGenerator(date, 1)
 
       let result = await Promise.all([
         TotalDataModel.findOne({ createdAt: { $eq: date } }),

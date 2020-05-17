@@ -263,3 +263,20 @@
 
 - Implement:
   - `readme.md` file with the documentation.
+
+## Version 4.3.0:
+
+- Implemented:
+  - [`puppeteer`](https://github.com/puppeteer/puppeteer) in order to implement our scrapper.
+  - [`ocr-space-api-alt2`](https://github.com/AnthonyLzq/ocr-space-api-alt2) in order to make a request to [ORC.SPACE API](https://ocr.space/ocrapi) to get text from an image.
+  - An scrapper that will be used in case the first API is not updated. This scrapper will try to get information from the situational room. Checkout `dataBaseUpdater` function.
+  - `imgToText` function, to get the embedded text from the screen shot that the scrapper performs.
+  - `cleanerForScraper` function, to clean the data gotten from the situational room.
+  . `cleanerForTNumbers` function, to clean the data gotten from the `ìmgToText` function.
+  - New rule to ignore comments length.
+- Updated:
+  - `src/bin/index.js` file, cleaning some useless code.
+  - `src/app.js` file, cleaning some useless code.
+  - `dateGenerator` function, to avoid time zone.
+  - `dataPerDat` controller now implements `dateGenerator` function.
+  - [Documentation](./readme).

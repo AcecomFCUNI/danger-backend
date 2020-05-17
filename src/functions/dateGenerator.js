@@ -1,6 +1,7 @@
-const dateGenerator = date => {
-  let rightDate = new Date(date)
-  rightDate = new Date(rightDate - 24*60*60*1000)
+const dateGenerator = (date, type=null) => {
+  let rightDate = new Date(`${date}T00:00:00.000Z`)
+  if(!type)
+    rightDate = new Date(rightDate - 24*60*60*1000)
 
   return rightDate
 }
