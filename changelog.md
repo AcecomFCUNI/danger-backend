@@ -279,7 +279,7 @@
   - `src/app.js` file, cleaning some useless code.
   - `dateGenerator` function, to avoid time zone.
   - `dataPerDat` controller now implements `dateGenerator` function.
-  - [Documentation](./readme).
+  - [Documentation](./readme.md).
 
 ## Version 4.4.0:
 
@@ -293,3 +293,12 @@
   - Updated:
     - `.eslintrc.js` file, added some new rules, to avoid unnecessary parenthesis, and to prefer constants.
     - `setInterval` function, to repeat the request to the API in case it fails every 28 minutes.
+
+## Version 4.4.1:
+
+  - Implemented:
+    - [`set-immediate-interval`](https://github.com/liketurbo/set-immediate-interval#readme) library, in order to execute the first request to the API without delay.
+  - Fixed:
+    - The `setInterval` function, now it is executed without delay.
+  - Updated:
+    - [Documentation](./readme.md).

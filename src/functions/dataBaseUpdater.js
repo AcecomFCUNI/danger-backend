@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import axios from 'axios'
 import nodemailer from 'nodemailer'
+import setImmediateInterval from 'set-immediate-interval'
 // import puppeteer from 'puppeteer'
 // import { exec } from 'child_process'
 
@@ -38,21 +39,24 @@ const TIME = process.env.TIME
 
 class DataBaseUpdater {
   async init (args) {
-    let { date } = args
     let response
-    const code = 1, queryBody = queryGenerator(URLS[0], date)
+    const { date } = args
+    const queryBody = queryGenerator(URLS[0], date)
 
-    const updater = setInterval(async () => {
+    const updater = setImmediateInterval(async () => {
       try {
         response = await axios({
           url: queryBody
         })
         response = cleanerForAPI(response.data.features)
+        await this.dataProcess(date, response)
 
-        clearTimeout(updater)
+        setTimeout(() => {
+          clearTimeout(updater)
+          this.mailer(false, null, 'Cleaned the interval.')
+        }, 1000)
       } catch (error) {
           this.mailer(
-            null,
             true,
             date,
             // eslint-disable-next-line max-len
@@ -66,28 +70,28 @@ class DataBaseUpdater {
           console.error(error)
       }
     }, TIME)
+  }
 
-    date = dateGenerator(date)
+  async dataProcess (data, date) {
 
     const departments = new DepartmentsModel({
-      createdAt  : date,
-      departments: response.departments
+      createdAt  : dateGenerator(date),
+      departments: data.departments
     })
 
     const totalData = new TotalDataModel({
-      createdAt     : date,
-      totalCases    : response.totalCases,
-      totalDeaths   : response.totalDeaths,
-      totalDiscarded: response.totalDiscarded,
-      totalRecovered: code === 1 ? response.totalRecovered: 0
+      createdAt     : dateGenerator(date),
+      totalCases    : data.totalCases,
+      totalDeaths   : data.totalDeaths,
+      totalDiscarded: data.totalDiscarded,
+      totalRecovered: data.totalRecovered
     })
 
     try {
       await Promise.all([departments.save(), totalData.save()])
-      this.mailer(code, false, dateUTCGenerator(date))
+      this.mailer(false, dateUTCGenerator(date))
     } catch (error) {
       this.mailer(
-        null,
         true,
         date,
         `Error while updating the database.\n${error.message}`
@@ -130,8 +134,8 @@ class DataBaseUpdater {
   //   }
   // }
 
-  mailer (code, error, date, message = null) {
-    let text, subject
+  mailer (error, date, message=null) {
+    let textMessage, subject
     const transporter = nodemailer.createTransport({
       auth: {
         pass: PASSWORD,
@@ -140,27 +144,24 @@ class DataBaseUpdater {
       service: 'Gmail'
     })
 
-    if(error) {
-      text = message
+    if(error)
       subject = 'Error'
-    } else {
+    else {
       subject = 'Confirmation'
-
       if(PORT === '4000')
         // eslint-disable-next-line max-len
-        text = `The database was successfully updated with the information of ${date}.\nIt was updated from Anthony's laptop `
+        textMessage = message || `The database was successfully updated with the information of ${date}.\nIt was updated from Anthony's laptop.`
       else
         // eslint-disable-next-line max-len
-        text = `The database was successfully updated with the information of ${date}.\nIt was updated from Heroku server `
-
-      if(code === 1) text += '(from the API).'
-      else text += '(from the situational room).'
+        textMessage = message || `The database was successfully updated with the information of ${date}.\nIt was updated from Heroku server.`
+      // if(code === 1) text += '(from the API).'
+      // else text += '(from the situational room).'
     }
 
     const mailOptions = {
       from   : EMAIL_SENDER,
       subject: `ACECOM's Covid app: ${subject}`,
-      text   : text,
+      text   : textMessage,
       to     : `${EMAIL_RECEPTOR[0]}, ${EMAIL_RECEPTOR[1]}`
     }
 

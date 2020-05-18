@@ -3621,6 +3621,11 @@ serve-static@1.13.2:
     parseurl "~1.3.2"
     send "0.16.2"
 
+set-immediate-interval@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/set-immediate-interval/-/set-immediate-interval-2.0.2.tgz#647f98dfa460755c436f8a18b040528ea486d035"
+  integrity sha512-60NaGtCpOrx8YJju8j/el1cXeislBMp7E/KqbooxBX9zyVRWJ+bY7svWMH5xYgpPOY7zPmo4KppcV8bsRRSjDQ==
+
 set-value@^2.0.0, set-value@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/set-value/-/set-value-2.0.1.tgz#a18d40530e6f07de4228c7defe4227af8cad005b"

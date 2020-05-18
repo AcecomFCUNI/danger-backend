@@ -1,3 +1,7 @@
+# mandatory things
 node_modules
 .vscode
 .env
+
+# yarn logs
+yarn-*.log
