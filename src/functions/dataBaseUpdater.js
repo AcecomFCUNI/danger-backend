@@ -49,7 +49,7 @@ class DataBaseUpdater {
           url: queryBody
         })
         response = cleanerForAPI(response.data.features)
-        await this.dataProcess(date, response)
+        await this.dataProcess(response, date)
 
         setTimeout(() => {
           clearTimeout(updater)
@@ -60,16 +60,16 @@ class DataBaseUpdater {
             true,
             date,
             // eslint-disable-next-line max-len
-            `The API has not been updated. Trying again in ${TIME/60000} minutes\n${error.message}`
+            `The API has not been updated. Trying again in ${parseInt(TIME)/60000} minutes\n${error.message}`
           )
           await axios({
             url: HOME
           })
           // eslint-disable-next-line max-len
-          console.log(`The API has not been updated. Trying again in ${TIME/60000} minutes\n${error.message}`)
+          console.log(`The API has not been updated. Trying again in ${parseInt(TIME)/60000} minutes\n${error.message}`)
           console.error(error)
       }
-    }, TIME)
+    }, parseInt(TIME))
   }
 
   async dataProcess (data, date) {
@@ -89,7 +89,7 @@ class DataBaseUpdater {
 
     try {
       await Promise.all([departments.save(), totalData.save()])
-      this.mailer(false, dateUTCGenerator(date))
+      this.mailer(false, dateUTCGenerator(dateGenerator(date)))
     } catch (error) {
       this.mailer(
         true,

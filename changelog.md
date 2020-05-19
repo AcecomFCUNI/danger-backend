@@ -302,3 +302,8 @@
     - The `setInterval` function, now it is executed without delay.
   - Updated:
     - [Documentation](./readme.md).
+
+## Version 4.4.1a:
+
+  - Fixed:
+    - Some minor bugs in the `dataBaseUpdater` file that provoked the send of many emails without control.
