@@ -307,3 +307,8 @@
 
   - Fixed:
     - Some minor bugs in the `dataBaseUpdater` file that provoked the send of many emails without control.
+
+## Version 4.4.1b:
+
+  - Fixed:
+    - Some minor bugs in the `dataBaseUpdater` file that provoked the send of emails without content.

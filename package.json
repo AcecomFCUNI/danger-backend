@@ -1,6 +1,6 @@
 {
   "name": "danger-backend",
-  "version": "4.4.1a",
+  "version": "4.4.1b",
   "description": "Backend of the ACECOM's Covid 19 application",
   "private": false,
   "scripts": {

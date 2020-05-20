@@ -13,7 +13,7 @@ import {
   // cleanerForScraper,
   // cleanerForTNumbers
 } from './cleaner'
-import { dateGenerator, dateUTCGenerator } from './dateGenerator'
+import { dateGenerator } from './dateGenerator'
 import { queryGenerator } from './queryGenerator'
 // import { getText } from './imgToText'
 
@@ -52,8 +52,8 @@ class DataBaseUpdater {
         await this.dataProcess(response, date)
 
         setTimeout(() => {
-          clearTimeout(updater)
           this.mailer(false, null, 'Cleaned the interval.')
+          clearTimeout(updater)
         }, 1000)
       } catch (error) {
           this.mailer(
@@ -89,7 +89,7 @@ class DataBaseUpdater {
 
     try {
       await Promise.all([departments.save(), totalData.save()])
-      this.mailer(false, dateUTCGenerator(dateGenerator(date)))
+      this.mailer(false, date)
     } catch (error) {
       this.mailer(
         true,
@@ -144,9 +144,10 @@ class DataBaseUpdater {
       service: 'Gmail'
     })
 
-    if(error)
+    if(error){
       subject = 'Error'
-    else {
+      textMessage = message
+    } else {
       subject = 'Confirmation'
       if(PORT === '4000')
         // eslint-disable-next-line max-len

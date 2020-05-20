@@ -8,9 +8,9 @@ class CurrentDate {
         .sort({ createdAt: -1 })
         .limit(1)
       date = date.createdAt
-      const current = dateUTCGenerator(date)
+      date = dateUTCGenerator(date)
 
-      return current
+      return date
     } catch (error) {
       console.log(error)
       throw new Error('Error while getting the current date from the database')
