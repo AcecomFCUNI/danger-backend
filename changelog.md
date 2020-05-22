@@ -312,3 +312,11 @@
 
   - Fixed:
     - Some minor bugs in the `dataBaseUpdater` file that provoked the send of emails without content.
+
+## Version 4.4.2:
+
+  - Updated:
+    - HOME environment variable has changed to HOME_URL.
+    - Route `/` now displays the current date in the server.
+  - TODO:
+    - Remove currentDate route in favor of the home content.

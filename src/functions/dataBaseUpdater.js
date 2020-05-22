@@ -17,7 +17,7 @@ import { dateGenerator } from './dateGenerator'
 import { queryGenerator } from './queryGenerator'
 // import { getText } from './imgToText'
 
-const HOME = process.env.HOME
+const HOME_URL = process.env.HOME_URL
 const URLS = [
   process.env.COVID_PERU_CASES_1,
   process.env.COVID_PERU_CASES_2
@@ -58,13 +58,23 @@ class DataBaseUpdater {
       } catch (error) {
           this.mailer(
             true,
-            date,
+            null,
             // eslint-disable-next-line max-len
             `The API has not been updated. Trying again in ${parseInt(TIME)/60000} minutes\n${error.message}`
           )
-          await axios({
-            url: HOME
-          })
+          try {
+            await axios({
+              url: HOME_URL
+            })
+          } catch (error) {
+            this.mailer(
+              true,
+              null,
+              // eslint-disable-next-line max-len
+              `Couldn't ping our home server to avoid the heroku dyno go to sleep\n${error.message}`
+            )
+          }
+
           // eslint-disable-next-line max-len
           console.log(`The API has not been updated. Trying again in ${parseInt(TIME)/60000} minutes\n${error.message}`)
           console.error(error)
