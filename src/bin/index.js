@@ -60,7 +60,7 @@ connection.once('open', () => {
 })
 
 // Setting the cronjob for production
-const job = new CronJob('00 40 11 * * *', () => {
+const job = new CronJob('00 30 19 * * *', () => {
   const currentDate = new Date(new Date().getTime() + 24*60*60*1000)
   let month, day
   const cc = new Updater()

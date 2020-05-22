@@ -320,3 +320,10 @@
     - Route `/` now displays the current date in the server.
   - TODO:
     - Remove currentDate route in favor of the home content.
+
+## Version 4.4.2a:
+
+  - Fixed:
+    - Message of route `/`.
+  - TODO:
+    - Remove currentDate route in favor of the home content.
