@@ -11,7 +11,7 @@ COVID_PERU_CASES_1=https://geocatmin.ingemmet.gob.pe/arcgis/rest/services/COVIT_
 EMAIL_SENDER=
 EMAIL_RECEPTOR_1=
 EMAIL_RECEPTOR_2=
-HOME=https://acecom-danger.herokuapp.com/
+HOME_URL=https://acecom-danger.herokuapp.com/
 MONGO=
 PASSWORD=
 PORT=
@@ -47,19 +47,7 @@ There are four endpoints implemented:
 
 1. Home: `/` , it has a get method. It is just decorative.
 
-2. CurrentDate: `/currentDate`, it has a get method. There is not parameter required. It will return the last date stored in the database.
-
-    - In case of success you will get the following response:
-      ```json
-      {
-        "error": false,
-        "message": {
-          "currentDate": "YYYY-MM-DD"
-        }
-      }
-      ```
-
-3. DataInEachDay: `/dataInEachDay`, it has a post method. This method has two different functionalities, according to the payload you send, here are some examples:
+2. DataInEachDay: `/dataInEachDay`, it has a post method. This method has two different functionalities, according to the payload you send, here are some examples:
 
     - To get the data from Peru (corresponding to an specific date):
     
@@ -115,7 +103,7 @@ There are four endpoints implemented:
         }
         ```
 
-4. DataPerDay: `/dataPerDay`, it has a post method. This has two different functionalities, according to the payload you send, here are some examples:
+3. DataPerDay: `/dataPerDay`, it has a post method. This has two different functionalities, according to the payload you send, here are some examples:
 
     - To get the accumulated data from an specific date from Peru:
     
@@ -153,7 +141,7 @@ There are four endpoints implemented:
       ```
 
 
-5. TotalData: `/totalData`, it has a post method. This method has two different functionalities, according to the payload you send, here are some examples:
+4. TotalData: `/totalData`, it has a post method. This method has two different functionalities, according to the payload you send, here are some examples:
 
     - To get all the data from Peru:
     
@@ -219,7 +207,7 @@ There are four endpoints implemented:
     }
     ```
 
-2. Be aware of the last 20 lines of the `/src/bin/index.js` file, it has a [`crontab`](https://github.com/kelektiv/node-cron) that will try to update the database at 09:00 pm, we suggest two comment these lines, in order to avoid generating an error if there isn't a `.env` file.
+2. Be aware of the last 20 lines of the `/src/bin/index.js` file, it has a [`crontab`](https://github.com/kelektiv/node-cron) that will try to update the database at 09:00 pm, we suggest to comment these lines, in order to avoid generating an error if there isn't a `.env` file.
 
 ## Authors:
 

@@ -1,11 +1,11 @@
 import { Home } from './home'
-import { CurrentDate } from './currentDate'
+// import { CurrentDate } from './currentDate'
 import { DataInEachDay } from './dataInEachDay'
 import { DataPerDay } from './dataPerDay'
 import { TotalData } from './totalData'
 
 const routes = [
-  CurrentDate, DataInEachDay, DataPerDay, TotalData
+  DataInEachDay, DataPerDay, TotalData
 ]
 
 const setRoutes = app => {

@@ -327,3 +327,10 @@
     - Message of route `/`.
   - TODO:
     - Remove currentDate route in favor of the home content.
+
+## Version 4.4.3:
+
+  - Removed:
+    - `currentDate` route.
+  - Updated:
+    - [`Documentation`](./readme.md)
