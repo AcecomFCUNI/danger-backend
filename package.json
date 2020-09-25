@@ -1,6 +1,6 @@
 {
   "name": "danger-backend",
-  "version": "4.4.3",
+  "version": "4.5.0",
   "description": "Backend of the ACECOM's Covid 19 application",
   "private": false,
   "scripts": {
@@ -29,7 +29,6 @@
   "dependencies": {
     "axios": "^0.19.2",
     "cookie-parser": "~1.4.4",
-    "cron": "^1.8.2",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "mongoose": "^5.9.7",

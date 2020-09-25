@@ -334,3 +334,8 @@
     - `currentDate` route.
   - Updated:
     - [`Documentation`](./readme.md)
+
+## Version 4.5.0:
+
+  - Deprecated:
+    - Cron job to update the database.

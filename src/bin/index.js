@@ -1,9 +1,9 @@
 import Debug from 'debug'
 import http from 'http'
-import { CronJob } from 'cron'
+// import { CronJob } from 'cron'
 
 import { app } from '../app'
-import { Updater } from '../functions/dataBaseUpdater'
+// import { Updater } from '../functions/dataBaseUpdater'
 import { connection } from '../mongo/index'
 
 const debug = Debug('covidperu:server')
@@ -60,25 +60,25 @@ connection.once('open', () => {
 })
 
 // Setting the cronjob for production
-const job = new CronJob('00 30 19 * * *', () => {
-  const currentDate = new Date(new Date().getTime() + 24*60*60*1000)
-  let month, day
-  const cc = new Updater()
+// const job = new CronJob('00 30 19 * * *', () => {
+//   const currentDate = new Date(new Date().getTime() + 24*60*60*1000)
+//   let month, day
+//   const cc = new Updater()
 
-  currentDate.getMonth() >= 10
-    ? month =  (currentDate.getMonth() + 1).toString()
-    : month = `0${currentDate.getMonth() + 1}`
+//   currentDate.getMonth() >= 10
+//     ? month =  (currentDate.getMonth() + 1).toString()
+//     : month = `0${currentDate.getMonth() + 1}`
 
-    currentDate.getUTCDate() >= 10
-    ? day = currentDate.getUTCDate().toString()
-    : day = `0${currentDate.getUTCDate()}`
+//     currentDate.getUTCDate() >= 10
+//     ? day = currentDate.getUTCDate().toString()
+//     : day = `0${currentDate.getUTCDate()}`
 
-  const args = { date: `${currentDate.getFullYear()}-${month}-${day}` }
-  console.log(args)
-  cc.init(args)
-})
+//   const args = { date: `${currentDate.getFullYear()}-${month}-${day}` }
+//   console.log(args)
+//   cc.init(args)
+// })
 
-job.start()
+// job.start()
 
 // Handle unhandled rejection warning
 // process.on('unhandledRejection', (reason, p) => {
