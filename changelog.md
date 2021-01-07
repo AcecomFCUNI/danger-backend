@@ -339,3 +339,8 @@
 
   - Deprecated:
     - Cron job to update the database.
+
+## Version 4.6.0:
+
+  - Updated:
+    - Dependencies.
