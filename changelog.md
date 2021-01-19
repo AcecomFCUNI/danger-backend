@@ -344,3 +344,8 @@
 
   - Updated:
     - Dependencies.
+
+## Version 4.7.0:
+
+  - Updated:
+    - Dependencies.
